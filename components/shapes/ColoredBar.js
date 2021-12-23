@@ -4,7 +4,6 @@ import colors from "../../config/colors";
 import AppText from "../AppText";
 
 const getMoodFrequency = (moodColors, moodColor) => {
-  console.log(moodColors, moodColor);
   return moodColors.filter((x) => x === moodColor).length;
 };
 
@@ -55,9 +54,7 @@ function ColoredBar({ moodColors }) {
             backgroundColor: colors.turquoise,
           },
         ]}
-      >
-        {console.log(moodFrequencies.turquoise)}
-      </View>
+      ></View>
     </View>
   );
 }
