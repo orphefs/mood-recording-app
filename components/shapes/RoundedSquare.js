@@ -13,17 +13,17 @@ function RoundedSquare({ value }) {
 
 const styles = StyleSheet.create({
   square: {
-    width: 50,
-    height: 30,
+    width: 60,
+    height: 40,
     backgroundColor: colors.white,
     borderColor: colors.black,
     borderWidth: 2,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: 15,
   },
   text: {
-    color: colors.white,
+    color: colors.black,
   },
 });
 

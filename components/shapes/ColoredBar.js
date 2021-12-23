@@ -22,7 +22,7 @@ function ColoredBar({ feeling, moodColors }) {
   const moodFrequencies = getMoodFrequencies(moodColors);
 
   return (
-    <View style={styles.page}>
+    <View style={styles.container}>
       <View
         style={[
           styles.square,
@@ -63,7 +63,7 @@ function ColoredBar({ feeling, moodColors }) {
 }
 
 const styles = StyleSheet.create({
-  page: {
+  container: {
     flex: 1,
     flexDirection: "row",
   },
