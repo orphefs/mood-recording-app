@@ -33,8 +33,6 @@ const allMoodColors = [
   moodColorsMeh,
 ];
 
-const feeling = "frustrated";
-
 export default function FeelingsScreen() {
   const [totalCount, setTotalCount] = useState(0);
 

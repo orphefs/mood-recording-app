@@ -1,20 +1,12 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Screen from "./components/Screen";
-import ColoredSlider from "./components/ColoredSlider";
-import FeelingsScreen from "./screens/FeelingsScreen";
+import DataEntryScreen from "./screens/DataEntryScreen";
 
 export default function App() {
-  return <FeelingsScreen />;
+  return <DataEntryScreen />;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    backgroundColor: "#fff",
-    alignItems: "baseline",
-    justifyContent: "flex-start",
   },
 });
