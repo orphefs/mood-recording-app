@@ -5,4 +5,5 @@ export default {
   yellow: "rgb(255, 218, 0)",
   green: "#68D393",
   turquoise: "#3bb7b0",
+  black: "#000000",
 };

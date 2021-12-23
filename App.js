@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import RoundedSquare from "./components/shapes/RoundedSquare";
+import Screen from "./components/Screen";
+import ColoredBar from "./components/shapes/ColoredBar";
+
+const moodColors = ["orange", "orange", "orange", "orange", "orange", "yellow"];
+const feeling = "frustrated";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <Screen>
+        <ColoredBar feeling={feeling} moodColors={moodColors} />
+      </Screen>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
