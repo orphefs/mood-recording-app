@@ -55,7 +55,7 @@ export default function App() {
     return Math.max(...lengths);
   };
 
-  const computeWidth = (moodColors, allMoodColors) => {
+  const computeWidth = (moodColors) => {
     const percentage = (moodColors.length / totalCount) * 100;
     return percentage.toString() + "%";
   };
