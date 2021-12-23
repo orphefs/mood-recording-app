@@ -18,11 +18,11 @@ const getMoodFrequencies = (moodColors) => {
   };
 };
 
-function ColoredBar({ feeling, moodColors }) {
+function ColoredBar({ moodColors }) {
   const moodFrequencies = getMoodFrequencies(moodColors);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container]}>
       <View
         style={[
           styles.square,
