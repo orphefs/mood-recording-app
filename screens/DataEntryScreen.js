@@ -5,6 +5,7 @@ import Screen from "../components/Screen";
 import AppPicker from "../components/Picker";
 import moods from "../config/moods";
 import feelings from "../config/feelings";
+import { Button } from "react-native";
 
 const moodColorsFrustrated = [
   "orange",
@@ -35,27 +36,43 @@ const allMoodColors = [
   moodColorsMeh,
 ];
 
+// TODO: need to fix delayed array update
+
 export default function DataEntryScreen() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ feeling: "Content", mood: "green" });
 
-  const [selectedValue, setSelectedValue] = useState("java");
+  const [dataArray, setDataArray] = useState([]);
 
-  const handleSelect = (name, item) => {
-    {
-    }
-    setData();
+  const handleFeelingChange = (item) => {
+    data.feeling = item;
+    setData(data);
+    // console.log(dataArray);
+  };
+
+  const handleSelectMood = (item) => {
+    data.mood = item;
+    setData(data);
+    // console.log(dataArray);
+  };
+
+  const submitEntry = () => {
+    let newData = JSON.parse(JSON.stringify(data)); // deep copy
+    setDataArray([...dataArray, newData]);
+    console.log(dataArray);
   };
 
   return (
     <Screen>
       <View style={styles.container}>
         <Picker
-          selectedValue={selectedValue}
+          selectedValue={data.feeling}
           style={{ width: "60%" }}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+          onValueChange={(itemValue, itemIndex) =>
+            handleFeelingChange(itemValue)
+          }
         >
           {feelings.map((feeling) => (
-            <Picker.Item label={feeling.label} value={feeling.value} />
+            <Picker.Item label={feeling.label} value={feeling.label} />
           ))}
         </Picker>
         <AppPicker
@@ -63,7 +80,13 @@ export default function DataEntryScreen() {
           name="mood"
           placeholder="Mood"
           style={{ width: "60%" }}
-          onSelectItem={(item) => handleSelect(item)}
+          onSelectItem={(item) => handleSelectMood(item.label)}
+        />
+        <Button
+          onPress={() => submitEntry()}
+          title="Submit"
+          color="#841584"
+          accessibilityLabel="Submit"
         />
       </View>
     </Screen>
