@@ -10,7 +10,7 @@ export default function FeelingsVisualization({ transformedData }) {
 
   useEffect(() => {
     if (transformedData) {
-      computeWidths();
+      computeBarWidths();
     }
   }, [transformedData]);
 
@@ -21,22 +21,24 @@ export default function FeelingsVisualization({ transformedData }) {
     return 0;
   };
 
-  const getMoodColors = (feeling) => {
+  const extractMoodColors = (feeling) => {
     return transformedData
       .filter((item) => item.feeling === feeling)
       .map((item) => item.mood)[0];
   };
 
-  const computeWidths = () => {
+  const computeBarWidths = () => {
     const widths = {};
     for (const feeling of feelings) {
-      widths[feeling.label] = computeWidth(getMoodColors(feeling.label));
+      widths[feeling.label] = computeBarWidth(extractMoodColors(feeling.label));
     }
     setBarWidths(widths);
   };
 
-  const computeWidth = (moodColors) => {
-    const allArrays = feelings.map((feeling) => getMoodColors(feeling.label));
+  const computeBarWidth = (moodColors) => {
+    const allArrays = feelings.map((feeling) =>
+      extractMoodColors(feeling.label)
+    );
     const maxLength = getLengthOfLargestArray(allArrays);
     const percentage = (moodColors.length / maxLength) * 100;
     if (!percentage) return "0%";
@@ -57,7 +59,7 @@ export default function FeelingsVisualization({ transformedData }) {
             >
               <ColoredSlider
                 feeling={feeling.label}
-                moodColors={getMoodColors(feeling.label)}
+                moodColors={extractMoodColors(feeling.label)}
               />
             </View>
           ))}
