@@ -3,6 +3,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Screen from "../components/Screen";
 import ColoredSlider from "../components/ColoredSlider";
+import feelings from "../config/feelings";
 
 export default function FeelingsVisualization({ transformedData }) {
   const [totalCount, setTotalCount] = useState(0);
@@ -65,47 +66,19 @@ export default function FeelingsVisualization({ transformedData }) {
     <>
       <Screen>
         <View style={styles.container}>
-          <View
-            style={{
-              flex: 1,
-              width: barWidths["Meh"],
-            }}
-          >
-            <ColoredSlider feeling={"Meh"} moodColors={getMoodColors("Meh")} />
-          </View>
-          <View
-            style={{
-              flex: 1,
-              width: barWidths["Content"],
-            }}
-          >
-            <ColoredSlider
-              feeling={"Content"}
-              moodColors={getMoodColors("Content")}
-            />
-          </View>
-          <View
-            style={{
-              flex: 1,
-              width: barWidths["Happy"],
-            }}
-          >
-            <ColoredSlider
-              feeling={"Happy"}
-              moodColors={getMoodColors("Happy")}
-            />
-          </View>
-          <View
-            style={{
-              flex: 1,
-              width: barWidths["Frustrated"],
-            }}
-          >
-            <ColoredSlider
-              feeling={"Frustrated"}
-              moodColors={getMoodColors("Frustrated")}
-            />
-          </View>
+          {feelings.map((feeling) => (
+            <View
+              style={{
+                flex: 1,
+                width: barWidths[feeling.label],
+              }}
+            >
+              <ColoredSlider
+                feeling={feeling.label}
+                moodColors={getMoodColors(feeling.label)}
+              />
+            </View>
+          ))}
         </View>
       </Screen>
     </>
