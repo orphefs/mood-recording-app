@@ -75,7 +75,11 @@ export default function DataEntry({ transformedData, setTransformedData }) {
         onValueChange={(itemValue, itemIndex) => handleFeelingChange(itemValue)}
       >
         {feelings.map((feeling) => (
-          <Picker.Item label={feeling.label} value={feeling.label} />
+          <Picker.Item
+            key={feeling.value.toString()}
+            label={feeling.label}
+            value={feeling.label}
+          />
         ))}
       </Picker>
       <AppPicker

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import RoundedSquare from "./shapes/RoundedSquare";
 import ColoredBar from "./shapes/ColoredBar";
-import App from "../App";
 import AppText from "./AppText";
 
 function ColoredSlider({ feeling, moodColors, width }) {

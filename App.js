@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
 import DataEntry from "./screens/DataEntry";
-import DataEntryScreen from "./screens/DataEntry";
 import FeelingsVisualization from "./screens/FeelingsVisualization";
 import Screen from "./components/Screen";
 import { useState } from "react/cjs/react.development";
