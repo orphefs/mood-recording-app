@@ -10,30 +10,52 @@ import { Button } from "react-native";
 // TODO: need to fix delayed array update
 
 export default function DataEntry({ transformedData, setTransformedData }) {
-  const [data, setData] = useState({ feeling: "Content", mood: "green" });
+  const [data, setData] = useState({ feeling: null, mood: null });
   const [dataArray, setDataArray] = useState([]);
+
+  useEffect(() => {
+    console.log("dataArray inside useEffect hook", dataArray);
+    transformDataForVisualization();
+    console.log("transformedData inside useEffect hook", transformedData);
+  }, [dataArray]);
+
+  useEffect(() => {
+    console.log("trasnformed data in useEffect hook", transformedData);
+  }, [transformedData]);
+
+  // Do this below for state change!
+  // function changeUserName() {
+  //   setUser({
+  //     ...user,
+  //     name: "Peter"
+  //   });
+  // }
 
   const handleFeelingChange = (item) => {
     data.feeling = item;
     setData(data);
-    // console.log(dataArray);
+    console.log("data var on handleFeelingChange", data);
   };
 
   const handleSelectMood = (item) => {
     data.mood = item;
     setData(data);
-    // console.log(dataArray);
+    console.log("data var on handleSelectMood", data);
   };
 
   const submitEntry = () => {
-    let newData = JSON.parse(JSON.stringify(data)); // deep copy
-    setDataArray([...dataArray, newData]);
-    transformDataForVisualization();
+    const newData = JSON.parse(JSON.stringify(data)); // deep copy
+    console.log("newData inside submitEntry", newData);
+    const newDataArray = dataArray.concat(newData);
+    setDataArray(newDataArray);
+    console.log("newDataArray inside submitEntry", newDataArray);
+    console.log("dataArray inside submitEntry", dataArray);
+
     // console.log(dataArray);
   };
 
   const transformDataForVisualization = () => {
-    const data = feelings.map((feeling) => {
+    const dataR = feelings.map((feeling) => {
       return {
         feeling: feeling.label,
         mood: dataArray
@@ -42,8 +64,7 @@ export default function DataEntry({ transformedData, setTransformedData }) {
       };
     });
     // console.log(data);
-    setTransformedData(data);
-    // console.log(transformedData);
+    setTransformedData(dataR);
   };
 
   return (
@@ -65,7 +86,7 @@ export default function DataEntry({ transformedData, setTransformedData }) {
         onSelectItem={(item) => handleSelectMood(item.label)}
       />
       <Button
-        onPress={() => submitEntry()}
+        onPress={submitEntry}
         title="Submit"
         color="#841584"
         accessibilityLabel="Submit"

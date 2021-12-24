@@ -7,10 +7,10 @@ import { useState } from "react/cjs/react.development";
 
 export default function App() {
   const [transformedData, setTransformedData] = useState([
-    { feeling: "Meh", mood: ["green", "red"] },
-    { feeling: "Content", mood: ["green", "green"] },
-    { feeling: "Happy", mood: ["yellow"] },
-    { feeling: "Frustrated", mood: ["yellow"] },
+    { feeling: "Meh", mood: [] },
+    { feeling: "Content", mood: [] },
+    { feeling: "Happy", mood: [] },
+    { feeling: "Frustrated", mood: ["green", "green"] },
   ]);
 
   return (
