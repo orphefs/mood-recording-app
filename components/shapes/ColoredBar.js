@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View } from "react-native";
 import colors from "../../config/colors";
-import AppText from "../AppText";
 
 const getMoodFrequency = (moodColors, moodColor) => {
   return moodColors.filter((x) => x === moodColor).length;
