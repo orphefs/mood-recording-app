@@ -9,7 +9,7 @@ import { Button } from "react-native";
 
 // TODO: need to fix delayed array update
 
-export default function DataEntry() {
+export default function DataEntry({ transformedData, setTransformedData }) {
   const [data, setData] = useState({ feeling: "Content", mood: "green" });
 
   const [dataArray, setDataArray] = useState([]);
@@ -29,7 +29,20 @@ export default function DataEntry() {
   const submitEntry = () => {
     let newData = JSON.parse(JSON.stringify(data)); // deep copy
     setDataArray([...dataArray, newData]);
+    transformDataForVisualization();
     console.log(dataArray);
+  };
+
+  const transformDataForVisualization = () => {
+    const data = feelings.map((feeling) => {
+      return {
+        feeling: feeling.label,
+        mood: dataArray
+          .filter((x) => x.feeling === feeling.label)
+          .map((x) => x.mood),
+      };
+    });
+    setTransformedData(data);
   };
 
   return (
