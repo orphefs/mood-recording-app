@@ -9,8 +9,8 @@ export default function App() {
   const [transformedData, setTransformedData] = useState([
     { feeling: "Meh", mood: ["green", "red"] },
     { feeling: "Content", mood: ["green", "green"] },
-    { feeling: "Happy", mood: [] },
-    { feeling: "Frustrated", mood: [] },
+    { feeling: "Happy", mood: ["yellow"] },
+    { feeling: "Frustrated", mood: ["yellow"] },
   ]);
 
   return (
@@ -29,5 +29,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 20,
   },
 });

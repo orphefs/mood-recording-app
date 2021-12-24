@@ -18,9 +18,6 @@ export default function FeelingsVisualization({ transformedData }) {
   useEffect(() => {
     if (transformedData) {
       computeWidths();
-      setTotalCount(getLengthOfLargestArray(allMoodColors));
-      console.log(allMoodColors);
-      console.log(totalCount);
     }
   }, [transformedData]); // The second parameters are the variables this useEffect is listening to for changes.
 
@@ -28,7 +25,10 @@ export default function FeelingsVisualization({ transformedData }) {
     const lengths = array.map((a) => a.length);
     console.log("array", array);
     console.log("lengths", lengths);
-    return Math.max(...lengths);
+    const maxLengths = Math.max(...lengths);
+    console.log("maxLengths", maxLengths);
+    if (maxLengths !== -Infinity) return maxLengths;
+    return 0;
   };
 
   const computeWidths = () => {
@@ -70,7 +70,13 @@ export default function FeelingsVisualization({ transformedData }) {
   };
 
   const computeWidth = (moodColors) => {
-    const percentage = (moodColors.length / totalCount) * 100;
+    const maxLength = getLengthOfLargestArray(allMoodColors);
+    const percentage = (moodColors.length / maxLength) * 100;
+
+    console.log("moodcolorslength", moodColors.length);
+
+    console.log("Percentage", percentage);
+    if (!percentage) return "0%";
     return percentage.toString() + "%";
   };
 
@@ -126,5 +132,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "baseline",
     justifyContent: "flex-start",
+    marginLeft: 20,
   },
 });
