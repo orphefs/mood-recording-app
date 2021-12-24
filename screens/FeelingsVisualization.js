@@ -37,13 +37,12 @@ export default function FeelingsVisualization({ transformedData }) {
   };
 
   const computeWidths = () => {
-    const bars = {};
-    bars.Frustrated = computeWidth(getMoodColors("Frustrated"));
-    bars.Content = computeWidth(getMoodColors("Content"));
-    bars.Happy = computeWidth(getMoodColors("Happy"));
-    bars.Meh = computeWidth(getMoodColors("Meh"));
-
-    setBarWidths(bars);
+    const widths = {};
+    for (const feeling of feelings) {
+      widths[feeling.label] = computeWidth(getMoodColors(feeling.label));
+    }
+    console.log("Bars", widths);
+    setBarWidths(widths);
   };
 
   const computeWidth = (moodColors) => {
