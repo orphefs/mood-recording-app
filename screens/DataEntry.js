@@ -29,7 +29,7 @@ export default function DataEntry({ transformedData, setTransformedData }) {
     let newData = JSON.parse(JSON.stringify(data)); // deep copy
     setDataArray([...dataArray, newData]);
     transformDataForVisualization();
-    console.log(dataArray);
+    // console.log(dataArray);
   };
 
   const transformDataForVisualization = () => {
@@ -41,8 +41,9 @@ export default function DataEntry({ transformedData, setTransformedData }) {
           .map((x) => x.mood),
       };
     });
-    console.log(data);
+    // console.log(data);
     setTransformedData(data);
+    // console.log(transformedData);
   };
 
   return (

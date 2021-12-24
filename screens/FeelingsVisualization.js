@@ -16,33 +16,36 @@ export default function FeelingsVisualization({ transformedData }) {
   const [barWidths, setBarWidths] = useState({});
 
   useEffect(() => {
-    setTotalCount(getLengthOfLargestArray(allMoodColors));
-  }, []);
-
-  useEffect(() => {
     if (transformedData) {
       computeWidths();
+      setTotalCount(getLengthOfLargestArray(allMoodColors));
+      console.log(allMoodColors);
+      console.log(totalCount);
     }
   }, [transformedData]); // The second parameters are the variables this useEffect is listening to for changes.
 
   const getLengthOfLargestArray = (array) => {
     const lengths = array.map((a) => a.length);
+    console.log("array", array);
+    console.log("lengths", lengths);
     return Math.max(...lengths);
   };
 
   const computeWidths = () => {
     const moodColorsFrustrated = transformedData
       .filter((item) => item.feeling === "Frustrated")
-      .map((item) => item.mood);
+      .map((item) => item.mood)[0];
+
+    console.log("moodColorsFrustrated", moodColorsFrustrated);
     const moodColorsContent = transformedData
       .filter((item) => item.feeling === "Content")
-      .map((item) => item.mood);
+      .map((item) => item.mood)[0];
     const moodColorsHappy = transformedData
       .filter((item) => item.feeling === "Happy")
-      .map((item) => item.mood);
+      .map((item) => item.mood)[0];
     const moodColorsMeh = transformedData
       .filter((item) => item.feeling === "Meh")
-      .map((item) => item.mood);
+      .map((item) => item.mood)[0];
 
     setMoodColorsMeh(moodColorsMeh);
     setMoodColorsFrustrated(moodColorsFrustrated);
@@ -63,6 +66,7 @@ export default function FeelingsVisualization({ transformedData }) {
     bars.Meh = computeWidth(moodColorsMeh);
 
     setBarWidths(bars);
+    console.log(barWidths);
   };
 
   const computeWidth = (moodColors) => {
