@@ -5,7 +5,9 @@ import Screen from "../components/Screen";
 import AppPicker from "../components/Picker";
 import moods from "../config/moods";
 import feelings from "../config/feelings";
-import { Button } from "react-native";
+import Button from "../components/Button";
+import AppText from "../components/AppText";
+import defaultStyles from "../config/styles";
 
 // TODO: need to fix delayed array update
 
@@ -23,14 +25,6 @@ export default function DataEntry({ transformedData, setTransformedData }) {
     console.log("trasnformed data in useEffect hook", transformedData);
   }, [transformedData]);
 
-  // Do this below for state change!
-  // function changeUserName() {
-  //   setUser({
-  //     ...user,
-  //     name: "Peter"
-  //   });
-  // }
-
   const handleFeelingChange = (item) => {
     setData({ ...data, feeling: item });
     // data.feeling = item;
@@ -46,6 +40,10 @@ export default function DataEntry({ transformedData, setTransformedData }) {
   };
 
   const submitEntry = () => {
+    if (!data.feeling || !data.mood) {
+      alert("Please select your feeling and mood.");
+      return;
+    }
     const newData = JSON.parse(JSON.stringify(data)); // deep copy
     console.log("newData inside submitEntry", newData);
     const newDataArray = dataArray.concat(newData);
@@ -71,9 +69,12 @@ export default function DataEntry({ transformedData, setTransformedData }) {
 
   return (
     <View style={styles.container}>
+      <AppText>How do you feel?</AppText>
       <Picker
+        // Picker does not support custom fonts on Android
         selectedValue={data.feeling}
-        style={{ width: "60%" }}
+        textStyle={{ color: "blue", fontFamily: "Cabin_700Bold" }}
+        itemTextStyle={{ fontFamily: "Cabin_700Bold" }}
         onValueChange={(itemValue, itemIndex) => handleFeelingChange(itemValue)}
       >
         {feelings.map((feeling) => (
@@ -84,17 +85,17 @@ export default function DataEntry({ transformedData, setTransformedData }) {
           />
         ))}
       </Picker>
+      <AppText>Select your mood...</AppText>
       <AppPicker
         items={moods}
         name="mood"
         placeholder="Mood"
-        style={{ width: "60%" }}
+        // style={{ width: "60%" }}
         onSelectItem={(item) => handleSelectMood(item.label)}
       />
       <Button
         onPress={submitEntry}
         title="Submit"
-        color="#841584"
         accessibilityLabel="Submit"
       />
     </View>

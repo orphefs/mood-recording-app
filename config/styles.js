@@ -13,7 +13,7 @@ export default {
       },
       android: {
         fontSize: 18,
-        fontFamily: "Roboto",
+        fontFamily: "Cabin_700Bold",
       },
     }),
   },

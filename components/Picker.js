@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import {
   View,
   Button,
-  Text,
   StyleSheet,
-  Platform,
-  TextInput,
   TouchableWithoutFeedback,
   FlatList,
   Modal,
