@@ -47,12 +47,9 @@ export default function FeelingsVisualization({ transformedData }) {
   };
 
   const computeWidth = (moodColors) => {
-    const maxLength = getLengthOfLargestArray([
-      getMoodColors("Frustrated"),
-      getMoodColors("Content"),
-      getMoodColors("Happy"),
-      getMoodColors("Meh"),
-    ]);
+    const allArrays = feelings.map((feeling) => getMoodColors(feeling.label));
+    console.log("allArrays", allArrays);
+    const maxLength = getLengthOfLargestArray(allArrays);
     const percentage = (moodColors.length / maxLength) * 100;
 
     console.log("moodcolorslength", moodColors.length);
