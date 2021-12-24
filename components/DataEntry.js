@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { StyleSheet, Text, View, Picker } from "react-native";
-import Screen from "../components/Screen";
-import AppPicker from "../components/Picker";
+import Screen from "./Screen";
+import AppPicker from "./Picker";
 import moods from "../config/moods";
 import feelings from "../config/feelings";
-import Button from "../components/Button";
-import AppText from "../components/AppText";
+import Button from "./Button";
+import AppText from "./AppText";
 import defaultStyles from "../config/styles";
 
 // TODO: need to fix delayed array update
@@ -70,37 +70,17 @@ export default function DataEntry({ transformedData, setTransformedData }) {
   return (
     <View style={styles.container}>
       <AppText>How do you feel?</AppText>
-
-      {/* <Picker
-        // Picker does not support custom fonts on Android
-        selectedValue={data.feeling}
-        textStyle={{ color: "blue", fontFamily: "Cabin_700Bold" }}
-        itemTextStyle={{ fontFamily: "Cabin_700Bold" }}
-        onValueChange={(itemValue, itemIndex) => handleFeelingChange(itemValue)}
-      >
-        {feelings.map((feeling) => (
-          <Picker.Item
-            key={feeling.value.toString()}
-            label={feeling.label}
-            value={feeling.label}
-          />
-        ))}
-      </Picker> */}
-
       <AppPicker
         items={feelings}
         name="feeling"
         placeholder="Feeling"
-        // style={{ width: "60%" }}
         onSelectItem={(item) => handleSelectFeeling(item.label)}
       />
-
       <AppText>Select your mood...</AppText>
       <AppPicker
         items={moods}
         name="mood"
         placeholder="Mood"
-        // style={{ width: "60%" }}
         onSelectItem={(item) => handleSelectMood(item.label)}
       />
       <Button

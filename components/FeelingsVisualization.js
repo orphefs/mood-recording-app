@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Screen from "../components/Screen";
-import ColoredSlider from "../components/ColoredSlider";
+import Screen from "./Screen";
+import ColoredSlider from "./ColoredSlider";
 import feelings from "../config/feelings";
 
 export default function FeelingsVisualization({ transformedData }) {

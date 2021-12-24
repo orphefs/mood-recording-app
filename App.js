@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import { useEffect } from "react";
-import DataEntry from "./screens/DataEntry";
-import FeelingsVisualization from "./screens/FeelingsVisualization";
+import DataEntry from "./components/DataEntry";
+import FeelingsVisualization from "./components/FeelingsVisualization";
 import Screen from "./components/Screen";
 import AppLoading from "expo-app-loading";
 import { useState } from "react/cjs/react.development";
 import { useFonts, Cabin_700Bold } from "@expo-google-fonts/cabin";
 import feelings from "./config/feelings";
+import FeelingsMoodsTrackerScreen from "./screens/FeelingsMoodsTrackerScreen";
 
 export default function App() {
   const [transformedData, setTransformedData] = useState(
@@ -26,15 +27,10 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <Screen>
-        <View style={styles.container}>
-          <DataEntry
-            transformedData={transformedData}
-            setTransformedData={setTransformedData}
-          />
-          <FeelingsVisualization transformedData={transformedData} />
-        </View>
-      </Screen>
+      <FeelingsMoodsTrackerScreen
+        transformedData={transformedData}
+        setTransformedData={setTransformedData}
+      />
     );
   }
 }
@@ -42,7 +38,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
+    margin: 40,
     // alignItems: "center",
     justifyContent: "center",
   },

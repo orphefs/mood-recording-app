@@ -15,14 +15,6 @@ const feelings = [
     label: "Frustrated",
     value: 4,
   },
-  {
-    label: "Very Happy",
-    value: 5,
-  },
-  {
-    label: "Joyous",
-    value: 6,
-  },
 ];
 
 export default feelings;
