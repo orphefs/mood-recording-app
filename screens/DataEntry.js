@@ -11,7 +11,6 @@ import { Button } from "react-native";
 
 export default function DataEntry({ transformedData, setTransformedData }) {
   const [data, setData] = useState({ feeling: "Content", mood: "green" });
-
   const [dataArray, setDataArray] = useState([]);
 
   const handleFeelingChange = (item) => {
@@ -42,6 +41,7 @@ export default function DataEntry({ transformedData, setTransformedData }) {
           .map((x) => x.mood),
       };
     });
+    console.log(data);
     setTransformedData(data);
   };
 

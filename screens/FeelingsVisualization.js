@@ -4,45 +4,65 @@ import { StyleSheet, Text, View } from "react-native";
 import Screen from "../components/Screen";
 import ColoredSlider from "../components/ColoredSlider";
 
-const moodColorsFrustrated = [
-  "orange",
-  "orange",
-  "orange",
-  "orange",
-  "orange",
-  "yellow",
-];
-
-const moodColorsMeh = [
-  ...Array(1).fill("red"),
-  ...Array(3).fill("orange"),
-  ...Array(19).fill("yellow"),
-];
-
-const moodColorsContent = [
-  ...Array(3).fill("yellow"),
-  ...Array(15).fill("green"),
-];
-
-const moodColorsHappy = Array(13).fill("green");
-
-const allMoodColors = [
-  moodColorsFrustrated,
-  moodColorsContent,
-  moodColorsHappy,
-  moodColorsMeh,
-];
-
-export default function FeelingsVisualization() {
+export default function FeelingsVisualization({ transformedData }) {
   const [totalCount, setTotalCount] = useState(0);
+  const [allMoodColors, setAllMoodColors] = useState([]);
+
+  const [moodColorsMeh, setMoodColorsMeh] = useState([]);
+  const [moodColorsFrustrated, setMoodColorsFrustrated] = useState([]);
+  const [moodColorsContent, setMoodColorsContent] = useState([]);
+  const [moodColorsHappy, setMoodColorsHappy] = useState([]);
+  ``;
+  const [barWidths, setBarWidths] = useState({});
 
   useEffect(() => {
     setTotalCount(getLengthOfLargestArray(allMoodColors));
   }, []);
 
+  useEffect(() => {
+    if (transformedData) {
+      computeWidths();
+    }
+  }, [transformedData]); // The second parameters are the variables this useEffect is listening to for changes.
+
   const getLengthOfLargestArray = (array) => {
     const lengths = array.map((a) => a.length);
     return Math.max(...lengths);
+  };
+
+  const computeWidths = () => {
+    const moodColorsFrustrated = transformedData
+      .filter((item) => item.feeling === "Frustrated")
+      .map((item) => item.mood);
+    const moodColorsContent = transformedData
+      .filter((item) => item.feeling === "Content")
+      .map((item) => item.mood);
+    const moodColorsHappy = transformedData
+      .filter((item) => item.feeling === "Happy")
+      .map((item) => item.mood);
+    const moodColorsMeh = transformedData
+      .filter((item) => item.feeling === "Meh")
+      .map((item) => item.mood);
+
+    setMoodColorsMeh(moodColorsMeh);
+    setMoodColorsFrustrated(moodColorsFrustrated);
+    setMoodColorsContent(moodColorsContent);
+    setMoodColorsHappy(moodColorsHappy);
+
+    setAllMoodColors([
+      moodColorsFrustrated,
+      moodColorsContent,
+      moodColorsHappy,
+      moodColorsMeh,
+    ]);
+
+    const bars = {};
+    bars.Frustrated = computeWidth(moodColorsFrustrated);
+    bars.Content = computeWidth(moodColorsContent);
+    bars.Happy = computeWidth(moodColorsHappy);
+    bars.Meh = computeWidth(moodColorsMeh);
+
+    setBarWidths(bars);
   };
 
   const computeWidth = (moodColors) => {
@@ -57,7 +77,7 @@ export default function FeelingsVisualization() {
           <View
             style={{
               flex: 1,
-              width: computeWidth(moodColorsMeh, allMoodColors),
+              width: barWidths["Meh"],
             }}
           >
             <ColoredSlider feeling={"Meh"} moodColors={moodColorsMeh} />
@@ -65,7 +85,7 @@ export default function FeelingsVisualization() {
           <View
             style={{
               flex: 1,
-              width: computeWidth(moodColorsContent, allMoodColors),
+              width: barWidths["Content"],
             }}
           >
             <ColoredSlider feeling={"Content"} moodColors={moodColorsContent} />
@@ -73,7 +93,7 @@ export default function FeelingsVisualization() {
           <View
             style={{
               flex: 1,
-              width: computeWidth(moodColorsHappy, allMoodColors),
+              width: barWidths["Happy"],
             }}
           >
             <ColoredSlider feeling={"Happy"} moodColors={moodColorsHappy} />
@@ -81,7 +101,7 @@ export default function FeelingsVisualization() {
           <View
             style={{
               flex: 1,
-              width: computeWidth(moodColorsFrustrated, allMoodColors),
+              width: barWidths["Frustrated"],
             }}
           >
             <ColoredSlider
