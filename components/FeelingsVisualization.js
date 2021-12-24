@@ -6,15 +6,13 @@ import ColoredSlider from "./ColoredSlider";
 import feelings from "../config/feelings";
 
 export default function FeelingsVisualization({ transformedData }) {
-  const [totalCount, setTotalCount] = useState(0);
-  const [allMoodColors, setAllMoodColors] = useState([]);
   const [barWidths, setBarWidths] = useState({});
 
   useEffect(() => {
     if (transformedData) {
       computeWidths();
     }
-  }, [transformedData]); // The second parameters are the variables this useEffect is listening to for changes.
+  }, [transformedData]);
 
   useEffect(() => {}, [barWidths]);
 
@@ -53,6 +51,7 @@ export default function FeelingsVisualization({ transformedData }) {
         <View style={styles.container}>
           {feelings.map((feeling) => (
             <View
+              key={feeling.value}
               style={{
                 flex: 1,
                 width: barWidths[feeling.label],
