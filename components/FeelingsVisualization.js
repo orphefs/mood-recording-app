@@ -16,16 +16,11 @@ export default function FeelingsVisualization({ transformedData }) {
     }
   }, [transformedData]); // The second parameters are the variables this useEffect is listening to for changes.
 
-  useEffect(() => {
-    console.log("barWidths", barWidths);
-  }, [barWidths]);
+  useEffect(() => {}, [barWidths]);
 
   const getLengthOfLargestArray = (array) => {
     const lengths = array.map((a) => a.length);
-    // console.log("array", array);
-    // console.log("lengths", lengths);
     const maxLengths = Math.max(...lengths);
-    // console.log("maxLengths", maxLengths);
     if (maxLengths !== -Infinity) return maxLengths;
     return 0;
   };
@@ -41,19 +36,13 @@ export default function FeelingsVisualization({ transformedData }) {
     for (const feeling of feelings) {
       widths[feeling.label] = computeWidth(getMoodColors(feeling.label));
     }
-    console.log("Bars", widths);
     setBarWidths(widths);
   };
 
   const computeWidth = (moodColors) => {
     const allArrays = feelings.map((feeling) => getMoodColors(feeling.label));
-    console.log("allArrays", allArrays);
     const maxLength = getLengthOfLargestArray(allArrays);
     const percentage = (moodColors.length / maxLength) * 100;
-
-    console.log("moodcolorslength", moodColors.length);
-
-    console.log("Percentage", percentage);
     if (!percentage) return "0%";
     return percentage.toString() + "%";
   };

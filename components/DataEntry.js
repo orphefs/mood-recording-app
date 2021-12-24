@@ -16,27 +16,17 @@ export default function DataEntry({ transformedData, setTransformedData }) {
   const [dataArray, setDataArray] = useState([]);
 
   useEffect(() => {
-    console.log("dataArray inside useEffect hook", dataArray);
     transformDataForVisualization();
-    console.log("transformedData inside useEffect hook", transformedData);
   }, [dataArray]);
 
-  useEffect(() => {
-    console.log("trasnformed data in useEffect hook", transformedData);
-  }, [transformedData]);
+  useEffect(() => {}, [transformedData]);
 
   const handleSelectFeeling = (item) => {
     setData({ ...data, feeling: item });
-    // data.feeling = item;
-    // setData(data);
-    console.log("data var on handleFeelingChange", data);
   };
 
   const handleSelectMood = (item) => {
     setData({ ...data, mood: item });
-    // data.mood = item;
-    // setData(data);
-    console.log("data var on handleSelectMood", data);
   };
 
   const submitEntry = () => {
@@ -45,13 +35,8 @@ export default function DataEntry({ transformedData, setTransformedData }) {
       return;
     }
     const newData = JSON.parse(JSON.stringify(data)); // deep copy
-    console.log("newData inside submitEntry", newData);
     const newDataArray = dataArray.concat(newData);
     setDataArray(newDataArray);
-    console.log("newDataArray inside submitEntry", newDataArray);
-    console.log("dataArray inside submitEntry", dataArray);
-
-    // console.log(dataArray);
   };
 
   const transformDataForVisualization = () => {
@@ -63,7 +48,6 @@ export default function DataEntry({ transformedData, setTransformedData }) {
           .map((x) => x.mood),
       };
     });
-    // console.log(data);
     setTransformedData(dataR);
   };
 

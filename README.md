@@ -11,13 +11,12 @@ This app demonstrates a simple mood and feeling documentation process, with visu
 
 This app follows a very simple structure:
 
-- `src`: This folder is the main container of all the code inside the application.
-  - `assets`: Asset folder to store all images, vectors, etc.
-  - `components`: Folder to store any common component that is used through the app
-  - `screens`: Folder to store screens used through the app
+- `assets`: Asset folder to store all images, vectors, etc.
+- `components`: Folder to store any common component that is used through the app
+- `screens`: Folder to store screens used through the app
 - `config`: Folder to store various global configuration files
-  - `App.js`: Main component that starts your whole app.
-  - `index.js`: Entry point of your application as per React-Native standards.
+- `App.js`: Main component that starts the whole app.
+- `index.js`: Entry point of the application as per React-Native standards.
 
 ## Installation
 
