@@ -33,7 +33,7 @@ const allMoodColors = [
   moodColorsMeh,
 ];
 
-export default function FeelingsScreen() {
+export default function FeelingsVisualization() {
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {

@@ -38,7 +38,7 @@ const allMoodColors = [
 
 // TODO: need to fix delayed array update
 
-export default function DataEntryScreen() {
+export default function DataEntry() {
   const [data, setData] = useState({ feeling: "Content", mood: "green" });
 
   const [dataArray, setDataArray] = useState([]);
@@ -62,34 +62,30 @@ export default function DataEntryScreen() {
   };
 
   return (
-    <Screen>
-      <View style={styles.container}>
-        <Picker
-          selectedValue={data.feeling}
-          style={{ width: "60%" }}
-          onValueChange={(itemValue, itemIndex) =>
-            handleFeelingChange(itemValue)
-          }
-        >
-          {feelings.map((feeling) => (
-            <Picker.Item label={feeling.label} value={feeling.label} />
-          ))}
-        </Picker>
-        <AppPicker
-          items={moods}
-          name="mood"
-          placeholder="Mood"
-          style={{ width: "60%" }}
-          onSelectItem={(item) => handleSelectMood(item.label)}
-        />
-        <Button
-          onPress={() => submitEntry()}
-          title="Submit"
-          color="#841584"
-          accessibilityLabel="Submit"
-        />
-      </View>
-    </Screen>
+    <View style={styles.container}>
+      <Picker
+        selectedValue={data.feeling}
+        style={{ width: "60%" }}
+        onValueChange={(itemValue, itemIndex) => handleFeelingChange(itemValue)}
+      >
+        {feelings.map((feeling) => (
+          <Picker.Item label={feeling.label} value={feeling.label} />
+        ))}
+      </Picker>
+      <AppPicker
+        items={moods}
+        name="mood"
+        placeholder="Mood"
+        style={{ width: "60%" }}
+        onSelectItem={(item) => handleSelectMood(item.label)}
+      />
+      <Button
+        onPress={() => submitEntry()}
+        title="Submit"
+        color="#841584"
+        accessibilityLabel="Submit"
+      />
+    </View>
   );
 }
 
