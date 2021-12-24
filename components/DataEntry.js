@@ -19,7 +19,7 @@ export default function DataEntry({ transformedData, setTransformedData }) {
     transformDataForVisualization();
   }, [dataArray]);
 
-  useEffect(() => {}, [transformedData]);
+  // useEffect(() => {}, [transformedData]);
 
   const handleSelectFeeling = (item) => {
     setData({ ...data, feeling: item });
