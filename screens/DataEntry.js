@@ -25,7 +25,7 @@ export default function DataEntry({ transformedData, setTransformedData }) {
     console.log("trasnformed data in useEffect hook", transformedData);
   }, [transformedData]);
 
-  const handleFeelingChange = (item) => {
+  const handleSelectFeeling = (item) => {
     setData({ ...data, feeling: item });
     // data.feeling = item;
     // setData(data);
@@ -70,7 +70,8 @@ export default function DataEntry({ transformedData, setTransformedData }) {
   return (
     <View style={styles.container}>
       <AppText>How do you feel?</AppText>
-      <Picker
+
+      {/* <Picker
         // Picker does not support custom fonts on Android
         selectedValue={data.feeling}
         textStyle={{ color: "blue", fontFamily: "Cabin_700Bold" }}
@@ -84,7 +85,16 @@ export default function DataEntry({ transformedData, setTransformedData }) {
             value={feeling.label}
           />
         ))}
-      </Picker>
+      </Picker> */}
+
+      <AppPicker
+        items={feelings}
+        name="feeling"
+        placeholder="Feeling"
+        // style={{ width: "60%" }}
+        onSelectItem={(item) => handleSelectFeeling(item.label)}
+      />
+
       <AppText>Select your mood...</AppText>
       <AppPicker
         items={moods}
