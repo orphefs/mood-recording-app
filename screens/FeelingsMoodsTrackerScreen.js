@@ -10,10 +10,7 @@ export default function FeelingsMoodsTrackerScreen({
   return (
     <Screen>
       <View style={styles.container}>
-        <DataEntry
-          transformedData={transformedData}
-          setTransformedData={setTransformedData}
-        />
+        <DataEntry setTransformedData={setTransformedData} />
         <FeelingsVisualization transformedData={transformedData} />
       </View>
     </Screen>

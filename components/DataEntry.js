@@ -11,15 +11,13 @@ import defaultStyles from "../config/styles";
 
 // TODO: need to fix delayed array update
 
-export default function DataEntry({ transformedData, setTransformedData }) {
+export default function DataEntry({ setTransformedData }) {
   const [data, setData] = useState({ feeling: null, mood: null });
   const [dataArray, setDataArray] = useState([]);
 
   useEffect(() => {
     transformDataForVisualization();
   }, [dataArray]);
-
-  // useEffect(() => {}, [transformedData]);
 
   const handleSelectFeeling = (item) => {
     setData({ ...data, feeling: item });
