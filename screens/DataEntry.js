@@ -32,14 +32,16 @@ export default function DataEntry({ transformedData, setTransformedData }) {
   // }
 
   const handleFeelingChange = (item) => {
-    data.feeling = item;
-    setData(data);
+    setData({ ...data, feeling: item });
+    // data.feeling = item;
+    // setData(data);
     console.log("data var on handleFeelingChange", data);
   };
 
   const handleSelectMood = (item) => {
-    data.mood = item;
-    setData(data);
+    setData({ ...data, mood: item });
+    // data.mood = item;
+    // setData(data);
     console.log("data var on handleSelectMood", data);
   };
 
