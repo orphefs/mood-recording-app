@@ -1,15 +1,11 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, Picker } from "react-native";
-import Screen from "./Screen";
+import { StyleSheet, View } from "react-native";
 import AppPicker from "./Picker";
 import moods from "../config/moods";
 import feelings from "../config/feelings";
 import Button from "./Button";
 import AppText from "./AppText";
-import defaultStyles from "../config/styles";
-
-// TODO: need to fix delayed array update
 
 export default function DataEntry({ setTransformedData }) {
   const [data, setData] = useState({ feeling: null, mood: null });

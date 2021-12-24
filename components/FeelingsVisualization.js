@@ -14,8 +14,6 @@ export default function FeelingsVisualization({ transformedData }) {
     }
   }, [transformedData]);
 
-  useEffect(() => {}, [barWidths]);
-
   const getLengthOfLargestArray = (array) => {
     const lengths = array.map((a) => a.length);
     const maxLengths = Math.max(...lengths);

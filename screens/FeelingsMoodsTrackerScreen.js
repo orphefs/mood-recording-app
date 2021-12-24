@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import DataEntry from "../components/DataEntry";
 import FeelingsVisualization from "../components/FeelingsVisualization";
 import Screen from "../components/Screen";
