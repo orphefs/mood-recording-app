@@ -7,12 +7,6 @@ import ColoredSlider from "../components/ColoredSlider";
 export default function FeelingsVisualization({ transformedData }) {
   const [totalCount, setTotalCount] = useState(0);
   const [allMoodColors, setAllMoodColors] = useState([]);
-
-  const [moodColorsMeh, setMoodColorsMeh] = useState([]);
-  const [moodColorsFrustrated, setMoodColorsFrustrated] = useState([]);
-  const [moodColorsContent, setMoodColorsContent] = useState([]);
-  const [moodColorsHappy, setMoodColorsHappy] = useState([]);
-  ``;
   const [barWidths, setBarWidths] = useState({});
 
   useEffect(() => {
@@ -42,34 +36,6 @@ export default function FeelingsVisualization({ transformedData }) {
   };
 
   const computeWidths = () => {
-    const moodColorsFrustrated = transformedData
-      .filter((item) => item.feeling === "Frustrated")
-      .map((item) => item.mood)[0];
-
-    console.log("moodColorsFrustrated", moodColorsFrustrated);
-    const moodColorsContent = transformedData
-      .filter((item) => item.feeling === "Content")
-      .map((item) => item.mood)[0];
-    const moodColorsHappy = transformedData
-      .filter((item) => item.feeling === "Happy")
-      .map((item) => item.mood)[0];
-    const moodColorsMeh = transformedData
-      .filter((item) => item.feeling === "Meh")
-      .map((item) => item.mood)[0];
-
-    setMoodColorsMeh(moodColorsMeh);
-    setMoodColorsFrustrated(moodColorsFrustrated);
-    setMoodColorsContent(moodColorsContent);
-    setMoodColorsHappy(moodColorsHappy);
-
-    setAllMoodColors([
-      getMoodColors("Frustrated"),
-      getMoodColors("Content"),
-      getMoodColors("Happy"),
-      getMoodColors("Meh"),
-    ]);
-    console.log("allMoodColors", allMoodColors);
-
     const bars = {};
     bars.Frustrated = computeWidth(getMoodColors("Frustrated"));
     bars.Content = computeWidth(getMoodColors("Content"));
@@ -80,7 +46,12 @@ export default function FeelingsVisualization({ transformedData }) {
   };
 
   const computeWidth = (moodColors) => {
-    const maxLength = getLengthOfLargestArray(allMoodColors);
+    const maxLength = getLengthOfLargestArray([
+      getMoodColors("Frustrated"),
+      getMoodColors("Content"),
+      getMoodColors("Happy"),
+      getMoodColors("Meh"),
+    ]);
     const percentage = (moodColors.length / maxLength) * 100;
 
     console.log("moodcolorslength", moodColors.length);
