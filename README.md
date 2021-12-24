@@ -29,4 +29,6 @@ To run, run `expo start` or `yarn start` from the root folder.
 
 ## Additional Notes
 
-New feelings can be added in a modular way, by modifying the object in `feelings.js` accordingly.
+- New feelings can be added in a modular way, by modifying the object in `feelings.js` accordingly.
+- State management tools like Redux were deemed unnecessary in this case, as the objective was to also minimize state variables as much as possible to improve readability and maintainability.
+- Form validation was not used, as there was no requirement for communication with a backend service.
