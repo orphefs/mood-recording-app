@@ -7,35 +7,6 @@ import moods from "../config/moods";
 import feelings from "../config/feelings";
 import { Button } from "react-native";
 
-const moodColorsFrustrated = [
-  "orange",
-  "orange",
-  "orange",
-  "orange",
-  "orange",
-  "yellow",
-];
-
-const moodColorsMeh = [
-  ...Array(1).fill("red"),
-  ...Array(3).fill("orange"),
-  ...Array(19).fill("yellow"),
-];
-
-const moodColorsContent = [
-  ...Array(3).fill("yellow"),
-  ...Array(15).fill("green"),
-];
-
-const moodColorsHappy = Array(13).fill("green");
-
-const allMoodColors = [
-  moodColorsFrustrated,
-  moodColorsContent,
-  moodColorsHappy,
-  moodColorsMeh,
-];
-
 // TODO: need to fix delayed array update
 
 export default function DataEntry() {
