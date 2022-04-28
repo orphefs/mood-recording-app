@@ -1,5 +1,7 @@
 # [Mood Data Entry and Visualization App](https://github.com/orphefs/mood-recording-app)
 
+[(Link to repository)](https://github.com/orphefs/mood-recording-app)
+
 This app demonstrates a simple mood and feeling documentation process, with visualization. It was developed using an [Expo](https://docs.expo.dev/) managed workflow, and custom components. More specifically, it uses the [expo-cli](https://docs.expo.dev/workflow/expo-cli/), and the Expo Go app on your mobile device. This app was initialized as per the instructions on the [Expo website](https://docs.expo.dev/get-started/create-a-new-app/).
 
 ![](https://raw.githubusercontent.com/orphefs/mood-recording-app/d502365ea5a7c67c289775cc9828ad3a572a2fb9/assets/app_workflow.gif)
